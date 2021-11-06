@@ -1,9 +1,13 @@
+certifi==2021.10.8
+charset-normalizer==2.0.7
 click==8.0.3
 Flask==2.0.2
+idna==3.3
 itsdangerous==2.0.1
 Jinja2==3.0.2
 MarkupSafe==2.0.1
-mysql-connector==2.2.9
+mysql-connector-python==8.0.27
+protobuf==3.19.1
 PyAudio==0.2.11
 pyobjc==7.3
 pyobjc-core==7.3
@@ -136,5 +140,7 @@ pyobjc-framework-Virtualization==7.3
 pyobjc-framework-Vision==7.3
 pyobjc-framework-WebKit==7.3
 pyttsx3==2.90
+requests==2.26.0
 SpeechRecognition==3.8.1
+urllib3==1.26.7
 Werkzeug==2.0.2

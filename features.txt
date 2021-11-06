@@ -1,0 +1,4 @@
+- Wire into existing Hilton smart rooms
+- Allow users to book room service, cleaning, restaurants, and activities
+- Allow cleaners to say when they're done cleaning so managers can come check it out
+- (Maybe)(Have robot at concierge desk to check people in and send them)

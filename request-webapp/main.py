@@ -1,5 +1,6 @@
 from flask import *
 import mysql.connector
+import requests
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -19,25 +20,27 @@ def query_db(query):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    res = requests.get('http://localhost:5000/getAllRequests')
+    res_json = res.json()
+    return render_template("index.html", req_data = res.json())
 
 @app.route("/createRequest")
 def create_req():
     params = list(request.args)
     user_id = params[0]
-    business_id = params[1]
+    business_name = params[1]
     time = params[2]
     req_type = params[3]
     special_info = params[4]
-    cursor.execute(f"INSERT INTO Requests(guestId, businessId, reqTime, reqType, otherInfo) VALUES ({user_id}, {business_id}, {time}, \'{req_type}\', \'{special_info}\')")
+    cursor.execute(f"INSERT INTO Requests(guestId, businessName, reqTime, reqType, otherInfo) VALUES ({user_id}, \'{business_name}\', \'{time}\', \'{req_type}\', \'{special_info}\')")
     return jsonify(response = "Values inserted successfully")
 
-@app.route("/getRequest")
+@app.route("/getAllRequests")
 def get_req():
-    req_id = list(request.args)[0]
-    req_id, user_id, business_id, time, req_type, special_info = query_db(f"SELECT * FROM Requests WHERE id={req_id}")[0]
-    time = str(time)
-    return jsonify(user = user_id, business = business_id, time = time, req_type = req_type, other = special_info)
+    data_tuples = []
+    for entry in query_db(f"SELECT * FROM Requests"):
+        data_tuples.append(entry)
+    return jsonify(data_tuples)
 
 if __name__ == "__main__":
     app.run(debug=True)
