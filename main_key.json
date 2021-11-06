@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "megaagent-borp",
+  "private_key_id": "c7db80460fc94e3b784db4f9506365e4e314e65f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDCN8+6X/ur5FdI\nYy8lmW05FM7hfa//81ew6+uuDsd4eoRsmSmOKtQ06i1xEybKMqAaLAjY7YUdb3Un\nLLGUrVxD7q5LANdXHRG9rnI3j08BtwiUXV+13Ndvztc5W3KPiUWeAQ2Gs7SWW+xJ\nEZazM+fSqWzBVJzmUwvdXK3pZOzRId5jUa9RawM8sqy3vWjBiepMq8BeKNV1gyRR\n+M/CeXZcLnTivWJrqTUIxEVX5Yare6uY0gJWN5mc3bgka+dIpvwi2/c4+8/RLVnd\nfpDkz3zFP+7V3habGPLBK437M0Dlfl3D/yfpe0u2eKEMbyNI/KLSoDIh2HseB+AC\nWsxa61dLAgMBAAECggEAAjDhCT0hPToNqGTYI1YWxcqfIlvssFOMpMSB4zDNcWWo\nO8Y/Z4v/bPuUKYK/M8Z9/6In3ljjl+UCWBsld1AqMkReSbEHzyR1f4OAoaI/+CFL\nAVFFYxwg7S4V/o+T49xMf96jaK+sDU2yr/Bs1PPJu6Dbg/UwqPj59FwDdV+vr46i\nbgaOwdiVDopGxQESWZDna4K04rRVPYWvVIEyD6NDxj11A19Jaml/ZGu+6EfKFN98\n2f+kQJLKWy65rOPgbCEzKe2vRYo17iqirN7UgBHzm8CEl57se5XT6ofbSneaSPKn\njYVCOtnglIxu2bSX2z0t+D0oywnTJMCKPJiPn8gAAQKBgQDq7XNkQtjFkBN4XbXm\nidbJ+a34ELrJPoe9RmUxTSZErSSjI/OqvOR7zDSEVxSRLx1QPCopc8S3iEPWYt7b\nsd6syO9/WaWHFs6s8H3IqDuWfpUewA3XSUJXvUNSgrIdKr+jyZwaIi/JemG5eGxs\nGgc6mjDxdegL2oJUTePaAEsAAQKBgQDTo5BPOIRkDSHOOpLmRk2y8wGaRXCB2RYq\ndOp+RZNPG1DQ0sJrnbMKeR58B2SoUZrowGqefyuRXjAjPDHTuvVORrmrqSsmo2cQ\nwaSz8LQqFR+d/BwcQLB7gzcJjbaTV67+6E5Y/PAThTBZYOfuuALQiqdN3D5/G5iP\nuO/ux/JXSwKBgQDQEywG+2X/5dI449c+r4s8LRa3BipKIEYdkIIEHq7sWOaAUFF7\nQf6k34MMTAx9Ytt1uzQkrtLnM5vSAJQexfXR1864XvBLLBo19nOSC99rNgZhy/z2\nV36ZM5qzM+sKBljieqj2RJ1KuEhh+5UcUhlhADylQKccCJcykCJlbakAAQKBgGhD\nuZG910NvUMtIAh0eX6Mcoxp8wUvHRmtORERHRKaBX5QxcQURoSY0u3cBMW7XHUkz\nmpNRNYadb3u8aRPVlIqmv0w5wH99mwYfUGQx3qCo3XW4waSNniSLZW74eQ0n8pe0\nnPysSB5lzIcL/deWohRZaskqC0QVtViBFPt/V/33AoGAdtrndKZ76v5Pm/HJZdxI\n+dNgRsqJNiSzt+qfpe2/8iBxSPTKLKWCixIQ1JzIryVZV4VV8DX0/2h1iPhvmM8Q\ncHspJbijt7zemxI8pflPBl0ScLP3pwRElW3rl9VKSthvbU/q/5HGMjxW78kUfkJZ\n84SdC7uFuT4zim8uSJBqbdM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "main-hack@megaagent-borp.iam.gserviceaccount.com",
+  "client_id": "117779946227764275360",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/main-hack%40megaagent-borp.iam.gserviceaccount.com"
+}
