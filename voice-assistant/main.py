@@ -1,3 +1,4 @@
+from speech_text_methods import *
 import requests
 import json
 
@@ -42,3 +43,7 @@ class IntentRecognizer:
 
 IR = IntentRecognizer("where can I get a burger?")
 IR.exec()
+
+while True:
+    print("Listening for input go ahead...")
+    speak(listen())
