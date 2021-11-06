@@ -5,6 +5,8 @@ recognizer = sr.Recognizer()
 
 def speak(command):
     engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', 'com.apple.speech.synthesis.voice.karen')
     engine.say(command)
     engine.runAndWait()
 

@@ -7,7 +7,7 @@ class IntentRecognizer:
         self.text = text
         self.headers = {
              "Content-Type": "application/json; charset=utf-8",
-             "Authorization": "Bearer ya29.a0ARrdaM8EQ1uADEdULXgvII5S6AwEjzEAWTENYs0Go0pncmgkuSTizjm1bFKU_yYumSbxmh7SXnUrWtmAF9wCv_PXibRvv_5P986JsB9NJ_x9YCw6zNfIR3l4FyJLOvyddxRkx0WmTYf57k4Eb9bQ9u3C3i2lqNHNywsAXhlK7PVnC4ycqiQjXEsQ8Ild-yHGpqAOPs5sIOZTeKbl5PQaSbjJCyAzvyx3BJdYH_jqxiKWtq0"
+             "Authorization": "Bearer ya29.a0ARrdaM9SvzmaP9v4dNWj9Lsuoomiu9THe3C_2Sn2pq4h_CbRtQBXwyajPZHqBCa_0WIP40qCn1r8Kiz0ebekHCMSxTs7bIoUgvTQousZ8srexTGf0UlETLYKjl6oACwsZbp5KgF_gzeCiRALwO1We422BeG-Gxa5pqYD-5Dn_F3s1As5LzSzazuG2ONthUywPlfAfvRYIgYBLMH_ee2n6yf980oofH6JLtsLIArDNIMiK-o"
          }
         self.data = {
             "queryInput":{
@@ -24,7 +24,7 @@ class IntentRecognizer:
                             }
                         }
                 }
-        self.url = "https://dialogflow.googleapis.com/v2/projects/megaagent-borp/agent/sessions/92ab73d7-dd71-9347-f491-5b4260961214:detectIntent"
+        self.url = "https://dialogflow.googleapis.com/v2/projects/dining-out-njcy/agent/sessions/1b48378b-2560-23cb-8a3c-1508fa232bf2:detectIntent"
 
     def call_model(self):
         res = requests.post(
@@ -35,8 +35,11 @@ class IntentRecognizer:
         return json.loads(res.text)
 
     def parse_output(self):
+        speak("Hang on one second")
         res = self.call_model()
-        print(res)
+        classification = res["queryResult"]["action"]
+        if classification == "venues.eating_out.search":
+            speak("Here are some restaurants close to you")
 
     def exec(self):
         self.parse_output()

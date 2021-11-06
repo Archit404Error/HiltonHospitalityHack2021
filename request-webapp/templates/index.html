@@ -7,8 +7,28 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel = "stylesheet" type = "text/css" href = "static/style.css">
 
     <title>AVA Home</title>
+    <script>
+      var reqs = -1;
+      function updatePage() {
+        fetch("http://localhost:5000/reqCount")
+        .then(res => res.json())
+        .then(resJson => {
+          console.log(resJson["count"])
+          if (reqs == -1)
+            reqs = resJson["count"];
+          else {
+            if (reqs < resJson["count"]) {
+              console.log("here")
+              location.reload();
+            }
+          }
+        })
+      }
+      setInterval(updatePage, 100)
+    </script>
   </head>
   <body>
     <div class = "container">
@@ -26,10 +46,31 @@
       </div>
       {% for request in req_data %}
         <div class = "row">
-          <p class = "col-md-3">Users: {{request[1]}}</p>
-          <p class = "col-md-3">Company: {{request[2]}}</p>
-          <p class = "col-md-3">Time: {{request[3]}}</p>
-          <p class = "col-md-3">Special Info: {{request[5]}}</p>
+          <!-- Button trigger modal -->
+            <div data-toggle="modal" data-target="#exampleModal{{loop.index}}" class = "req-container col-md-1 justify-content-center mb-3">
+                <p>{{request[1]}}</p>
+            </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal{{loop.index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">{{request[1]}} - {{request[2]}}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>{{request[3]}}</p>
+                  <p>{{request[5]}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       {% endfor %}
     </div>
