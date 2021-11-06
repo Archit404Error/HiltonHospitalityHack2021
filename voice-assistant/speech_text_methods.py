@@ -16,4 +16,4 @@ def listen():
             spoken_text = recognizer.recognize_google(spoken_audio)
             return spoken_text
     except:
-        return "too much background noise"
+        return "Sorry, I didn\'t understand"

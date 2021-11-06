@@ -7,6 +7,5 @@
 - Book cleaning
 
 ### Directory Structure ###
-- request-webapp --> webapp frontend
-- request-api --> api backend that webapp and voice-assistant query
+- request-webapp --> webapp frontend and backend (api)
 - voice-assisant --> takes in user input, categorizes it, and determines what api endpoint to query
