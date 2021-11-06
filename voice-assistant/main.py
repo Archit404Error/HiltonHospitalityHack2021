@@ -7,7 +7,7 @@ class IntentRecognizer:
         self.text = text
         self.headers = {
              "Content-Type": "application/json; charset=utf-8",
-             "Authorization": "Bearer ya29.a0ARrdaM9SvzmaP9v4dNWj9Lsuoomiu9THe3C_2Sn2pq4h_CbRtQBXwyajPZHqBCa_0WIP40qCn1r8Kiz0ebekHCMSxTs7bIoUgvTQousZ8srexTGf0UlETLYKjl6oACwsZbp5KgF_gzeCiRALwO1We422BeG-Gxa5pqYD-5Dn_F3s1As5LzSzazuG2ONthUywPlfAfvRYIgYBLMH_ee2n6yf980oofH6JLtsLIArDNIMiK-o"
+             "Authorization": "Bearer ya29.a0ARrdaM9SbrM0tlcLeYpm1WcU2UYK2HHCKM3ZrAk6l8MCQMjrYRW0H6pFQ2k8A2nLwMEWHhdw5whQLca_Qn7wKDCp2VtbIZ6QwPR67ltd0LiROZvNZheCUBOo6uMrnP7S6jUSLh-VaXh9fmlFKC9atIi9oah4hosdB7dhHMvzkWqIPWzyqMeqO64MHI_cUEv1ABV0D5IKiMXCphnHhSMQbQqyaH0AcrUPnhYVh_l_UYHCSro"
          }
         self.data = {
             "queryInput":{
@@ -24,7 +24,7 @@ class IntentRecognizer:
                             }
                         }
                 }
-        self.url = "https://dialogflow.googleapis.com/v2/projects/dining-out-njcy/agent/sessions/1b48378b-2560-23cb-8a3c-1508fa232bf2:detectIntent"
+        self.url = "https://dialogflow.googleapis.com/v2/projects/ava-wtvw/agent/sessions/842b397f-f75c-e156-4ba0-03dcfcb8d49d:detectIntent"
 
     def call_model(self):
         res = requests.post(
@@ -37,9 +37,13 @@ class IntentRecognizer:
     def parse_output(self):
         speak("Hang on one second")
         res = self.call_model()
-        classification = res["queryResult"]["action"]
-        if classification == "venues.eating_out.search":
-            speak("Here are some restaurants close to you")
+        try:
+            classification = res["queryResult"]["action"]
+            if classification == "venues.eating_out.search":
+                speak("Here are some restaurants close to you")
+        except:
+            speak("Sorry, I couldn\'t understand")
+            print(res)
 
     def exec(self):
         self.parse_output()
