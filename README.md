@@ -1,5 +1,10 @@
 # Hilton Hospitality Hack 2021 #
 ## Hotel Voice Assistant ##
+
+Is an alexa-like device that can provide users with recommendations about local activities and restaurants during their hotel stays. Automates processes like room service and cleaning scheduling. Backend platform allows hotels to manage and deal with requests.
+
+Built using Flask, HTML, and Google's DialogFlow API.
+
 ### Features ###
 - Book a restaurant
 - Book an activity
