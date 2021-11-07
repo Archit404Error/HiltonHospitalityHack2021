@@ -7,7 +7,7 @@ class IntentRecognizer:
         self.text = text
         self.headers = {
              "Content-Type": "application/json; charset=utf-8",
-             "Authorization": "Bearer ya29.a0ARrdaM9SbrM0tlcLeYpm1WcU2UYK2HHCKM3ZrAk6l8MCQMjrYRW0H6pFQ2k8A2nLwMEWHhdw5whQLca_Qn7wKDCp2VtbIZ6QwPR67ltd0LiROZvNZheCUBOo6uMrnP7S6jUSLh-VaXh9fmlFKC9atIi9oah4hosdB7dhHMvzkWqIPWzyqMeqO64MHI_cUEv1ABV0D5IKiMXCphnHhSMQbQqyaH0AcrUPnhYVh_l_UYHCSro"
+             "Authorization": "Bearer ya29.a0ARrdaM8mgchwFOTyHsjUiYZ3Zh2dWY7J0G61yJcJZVnm2uSm3kuBw_gn5hpo5OBv8Lz9VGLP-8awN4eN7F5LYRFv57eO1XreLUXVcSKLEpFSo6Bq8QaB08u-rb4HXSobboWPS4EtM1Wr31T4NkX-bROiZLWEiQLxk7l2J0ymcEu4KcqhYSACDtVX74hLDHh7wQNYKMh5g5LlNa1xmhL3y6UVjVoGxX-4Uf93lCjwpHxcOtU"
          }
         self.data = {
             "queryInput":{
@@ -35,8 +35,13 @@ class IntentRecognizer:
         return json.loads(res.text)
 
     def parse_output(self):
-        speak("Hang on one second")
+        if self.text != "Sorry, I didn\'t understand":
+            speak("Hang on one second")
+        else:
+            speak("Sorry, I couldn\'t understand")
+            return
         res = self.call_model()
+        print(res)
         try:
             classification = res["queryResult"]["action"]
             if classification == "venues.eating_out.search":
