@@ -7,7 +7,7 @@ class IntentRecognizer:
         self.text = text
         self.headers = {
              "Content-Type": "application/json; charset=utf-8",
-             "Authorization": "Bearer ya29.a0ARrdaM9tXIT0fuhqrTQ8yXYbzD4y4Up37VXOyCjuKTS-Ar7uvAY102y2tk8v_OfXd9ND5p_S-vxrUumeHuFb_L1hBqtIIqwk6gz4_n4AmRoWt0vOj4cCcHYONSNgtKMfT6nMqgkQFn3r4wtlWc9PFb4Wz7Owl41QDxaTDit1lXAPTyetbASRImVXPsPNUsWco0PkUFElghxdxJoeSFTcmUAwqR_K5Fw4fwFLdj2QVJ2Ww88"
+             "Authorization": "Bearer ya29.a0ARrdaM-hw1IbgIuNlu3H0xRk_OTNfmDTaGzpDKHoe_19109MPXkvT5Q-TTHZ2QK6Cn7KZA8nsew-V3FGyOM7L4SIWn9V0YSCTRiW1aBR45nsmg3mG1GIjQP9_HxI3x3sIpwYxrHQT12WJiJFuGeApJkRYFLm8HGLKwz5KKsXBVH4xmB1Xnf_Hs6pzbf2bk6Dev_ueFQtvKEVfla-XqZSsnSe6eCYltCzWomoc1K_FtLK83w"
          }
         self.data = {
             "queryInput":{
@@ -56,11 +56,24 @@ class IntentRecognizer:
                 res = requests.get("http://localhost:5000/getActivities")
                 restaurant_list = res.json()
                 speak(", ".join(restaurant_list))
-            elif classification == "events.tickes.book":
+            elif classification == "events.tickets.book":
                 speak("Booking your ticket now")
+                event = params['event-type']
+                try:
+                    time = params["date-time"]['date_time']
+                except:
+                    time = params["date-time"]
+                requests.get(f"http://localhost:5000/createRequest?Archit&{event}&{time}&activity&none")
             elif classification == "delivery.product.add":
                 speak("Ordering your food via room service")
             elif classification == "hotel.book":
+                speak("Booking your cleaning")
+                try:
+                    time = params["checkin-date"]['date-time']
+                except:
+                    time = params["checkin-date"]
+                res = requests.get(f"http://localhost:5000/createRequest?Archit&cleaning&{time}&roomCleaning&none")
+                print(res.text)
                 speak("Cleaning has been scheduled")
             elif classification == "restaurant.book":
                 speak("Booking your seat")
@@ -70,7 +83,6 @@ class IntentRecognizer:
                 except:
                     time = params["date-time"]
                 res = requests.get(f"http://localhost:5000/createRequest?Archit&{restaurant}&{time}&restaurant&none")
-                print(res.text)
         except Exception as e:
             import traceback
             traceback.print_exc()
