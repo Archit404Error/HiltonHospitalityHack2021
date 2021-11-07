@@ -72,6 +72,8 @@ class IntentRecognizer:
                     time = params["checkin-date"]['date-time']
                 except:
                     time = params["checkin-date"]
+                if type(time) == list:
+                    time = time[0]
                 res = requests.get(f"http://localhost:5000/createRequest?Archit&cleaning&{time}&roomCleaning&none")
                 print(res.text)
                 speak("Cleaning has been scheduled")
