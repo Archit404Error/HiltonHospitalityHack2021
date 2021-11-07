@@ -7,7 +7,7 @@ class IntentRecognizer:
         self.text = text
         self.headers = {
              "Content-Type": "application/json; charset=utf-8",
-             "Authorization": "Bearer ya29.a0ARrdaM87eP7HWVlgoRCts9p_CBofvF72ARJqXs4rzzCBS-hgmIgxKgyXx9nI45NEiuim0LQ6bB0eOpa5a4ta53flznw10LLhUzQ1isktd6tQf7858-H6LFKNjr9j9psGNZcWC2HNqfx1dWnFAm4aGLO0wNjvNDIt1x2IgyLfrZOQO18JnqR1VgqSjmO0mQLGP2seE-jR76AvyFEEP54Q9Qm0hpb71MqiWTE6kxOaJG1hYGM"
+             "Authorization": "Bearer ya29.a0ARrdaM9ukBl9U_jVV0zcNUg9SnY_lCQu1Rmdr25R8KFNyY9T2uHSUxoHIdI6NU1n25Gq2JRdw8SUTvBir558VZthziETFhile4q2Y_A2Jzeu9zVbYgAiMoMef8bZbFmZHAgNzKVSA6G2Hy59FGZCG2AGjrfpv37M-5m5UKKkes7KdMhmBCAR-MAZRBlZAXdoIEJ0KJ1HteXp7jpJTgYMpw-nEfUptBunpcKDr190HRu8lak"
          }
         self.data = {
             "queryInput":{
@@ -86,6 +86,7 @@ class IntentRecognizer:
                 except:
                     time = params["date-time"]
                 res = requests.get(f"http://localhost:5000/createRequest?Archit&{restaurant}&{time}&restaurant&none")
+                speak("Seat booked")
         except Exception as e:
             import traceback
             traceback.print_exc()
