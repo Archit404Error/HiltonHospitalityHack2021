@@ -61,6 +61,13 @@ class IntentRecognizer:
             elif classification == "delivery.product.add":
                 speak("Ordering your food via room service")
             elif classification == "hotel.book":
+                speak("Booking your cleaning")
+                try:
+                    time = params["checkin-date"]['date-time']
+                except:
+                    time = params["checkin-date"]
+                res = requests.get("http://localhost:5000/createRequest?Archit&cleaning&{time}&roomCleaning&none}")
+                print(res.text)
                 speak("Cleaning has been scheduled")
             elif classification == "restaurant.book":
                 speak("Booking your seat")
