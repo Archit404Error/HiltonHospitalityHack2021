@@ -13,7 +13,7 @@ def speak(command):
 def listen():
     try:
         with sr.Microphone() as mic:
-            recognizer.adjust_for_ambient_noise(mic, duration=0.2)
+            recognizer.adjust_for_ambient_noise(mic, duration=0.4)
             spoken_audio = recognizer.listen(mic)
             spoken_text = recognizer.recognize_google(spoken_audio)
             return spoken_text

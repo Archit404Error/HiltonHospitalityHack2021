@@ -7,9 +7,27 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel = "stylesheet" type = "text/css" href = "static/style.css">
 
     <title>AVA Home</title>
+    <style>
+      .title{
+        font-family: 'Roboto'
+      }
+      .req-div{
+        border: 2px solid black;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding:10px;
+        border-radius: 5px;
+      }
+      body{
+        background-color: cornflower;
+      }
+    </style>
     <script>
       var reqs = -1;
       function updatePage() {
@@ -23,56 +41,58 @@
             if (reqs < resJson["count"]) {
               console.log("here")
               location.reload();
+              window.scrollTo(0, document.body.scrollHeight);
             }
           }
         })
       }
-      setInterval(updatePage, 100)
+      setInterval(updatePage, 10000)
     </script>
   </head>
+
   <body>
     <div class = "container">
-      <div class = "row justify-content-center">
-        <h1>Request Manager</h1>
-      </div>
-      <div class = "row justify-content-center">
-        <h2 class = "col">Mon</h2>
-        <h2 class = "col">Tue</h2>
-        <h2 class = "col">Wed</h2>
-        <h2 class = "col">Thu</h2>
-        <h2 class = "col">Fri</h2>
-        <h2 class = "col">Sat</h2>
-        <h2 class = "col">Sun</h2>
-      </div>
-      {% for request in req_data %}
-        <div class = "row">
-          <!-- Button trigger modal -->
-            <div data-toggle="modal" data-target="#exampleModal{{loop.index}}" class = "req-container col-md-1 justify-content-center mb-3">
-                <p>{{request[1]}}</p>
-            </div>
+      <h1>Request Manager</h1>
+      <div class = "justify-content-center">
+          {% for request in req_data %}
+            <div class='req-div'>
+              <h3 class="title col"> {{loop.index}}. Request for <strong> {{request[1]}} </strong> </h3>
+              <p class="col" id="date{{loop.index}}"> </p>
+              <p class="col" id="time{{loop.index}}"> </p>
+              <p class="col" id="type{{loop.index}}"> </p>
+              <p class="col" id="name{{loop.index}}"> </p>
 
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal{{loop.index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">{{request[1]}} - {{request[2]}}</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>{{request[3]}}</p>
-                  <p>{{request[5]}}</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
-                </div>
+              <script>
+                var req_time = {{request | safe}}[3];
+                var date = req_time.split("T")[0];
+                var time = req_time.split("T")[1];
+                time = time.split("-")[0];
+                var dateObj = date + " " + time;
+                var given = new Date(dateObj);
+                var day_list = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                console.log("test: " + day_list[given.getDay()]);
+                document.getElementById("date{{loop.index}}").innerHTML = "<strong>Date</strong>: " + date + ", " + day_list[given.getDay()]
+                document.getElementById("time{{loop.index}}").innerHTML = "<strong>Time: </strong>" + time
+                var type = {{request | safe}}[4]
+                var biz_name = {{request | safe}}[2]
+                console.log(biz_name)
+                if(type=="restaurant"){
+                  type = "Booking a restaurant."
+                  document.getElementById("name{{loop.index}}").innerHTML = "<strong>Restaurant: </strong>" + biz_name
+                }
+                else if(type=="roomCleaning"){
+                  type = "Scheduling a room cleaning."
+                }
+                else if(type=="activity"){
+                  type = "Booking an activity."
+                  document.getElementById("name{{loop.index}}").innerHTML = "<strong>Activity at: </strong>" + biz_name
+                }
+
+                document.getElementById("type{{loop.index}}").innerHTML = "<strong>Request type: </strong>" + type
+                </script>
               </div>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
+          {% endfor %}
+      </div>
     </div>
 
     <!-- Optional JavaScript -->

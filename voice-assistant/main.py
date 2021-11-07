@@ -7,7 +7,7 @@ class IntentRecognizer:
         self.text = text
         self.headers = {
              "Content-Type": "application/json; charset=utf-8",
-             "Authorization": "Bearer ya29.a0ARrdaM-hw1IbgIuNlu3H0xRk_OTNfmDTaGzpDKHoe_19109MPXkvT5Q-TTHZ2QK6Cn7KZA8nsew-V3FGyOM7L4SIWn9V0YSCTRiW1aBR45nsmg3mG1GIjQP9_HxI3x3sIpwYxrHQT12WJiJFuGeApJkRYFLm8HGLKwz5KKsXBVH4xmB1Xnf_Hs6pzbf2bk6Dev_ueFQtvKEVfla-XqZSsnSe6eCYltCzWomoc1K_FtLK83w"
+             "Authorization": "Bearer ya29.a0ARrdaM87eP7HWVlgoRCts9p_CBofvF72ARJqXs4rzzCBS-hgmIgxKgyXx9nI45NEiuim0LQ6bB0eOpa5a4ta53flznw10LLhUzQ1isktd6tQf7858-H6LFKNjr9j9psGNZcWC2HNqfx1dWnFAm4aGLO0wNjvNDIt1x2IgyLfrZOQO18JnqR1VgqSjmO0mQLGP2seE-jR76AvyFEEP54Q9Qm0hpb71MqiWTE6kxOaJG1hYGM"
          }
         self.data = {
             "queryInput":{
@@ -64,6 +64,7 @@ class IntentRecognizer:
                 except:
                     time = params["date-time"]
                 requests.get(f"http://localhost:5000/createRequest?Archit&{event}&{time}&activity&none")
+                speak("Booking confirmed")
             elif classification == "delivery.product.add":
                 speak("Ordering your food via room service")
             elif classification == "hotel.book":
@@ -96,5 +97,5 @@ class IntentRecognizer:
 
 while True:
     print("Listening for input go ahead...")
-    IR = IntentRecognizer(input())
+    IR = IntentRecognizer(listen())
     IR.exec()
