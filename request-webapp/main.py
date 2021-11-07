@@ -42,6 +42,22 @@ def get_req():
         data_tuples.append(entry)
     return jsonify(data_tuples)
 
+@app.route("/getRestaurants")
+def get_restaurants():
+    res = query_db("SELECT * FROM Businesses WHERE activityName = \'restaurant\'")
+    names = []
+    for tuple in res:
+        names.append(tuple[1])
+    return jsonify(names)
+
+@app.route("/getActivities")
+def get_activities():
+    res = query_db("SELECT * FROM Businesses WHERE activityName != \'restaurant\'")
+    names = []
+    for tuple in res:
+        names.append(tuple[1])
+    return jsonify(names)
+
 @app.route("/reqCount")
 def req_amt():
     res = list(query_db("SELECT COUNT(*) FROM Requests")[0])[0]
